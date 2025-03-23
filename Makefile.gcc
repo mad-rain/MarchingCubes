@@ -12,4 +12,4 @@ mc_test.o	: mc_test.c
 vector.o	: vector.c
 		$(CC) vector.c $(OPT)
 mcubes		: $(OBJS)
-		gcc -o mc $(OBJS) -L/usr/X11R6/lib -lGL -lGLU -lglut -lc_r
+		gcc -o mc $(OBJS) -L/usr/X11R6/lib -lGL -lGLU -lglut -lm

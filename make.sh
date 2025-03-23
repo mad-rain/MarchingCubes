@@ -1,3 +1,3 @@
 # /bin/sh
-make -f Makefile.gcc mc
+make -f Makefile.gcc mcubes
 

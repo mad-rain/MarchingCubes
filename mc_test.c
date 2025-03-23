@@ -4,6 +4,7 @@
 #include "mcubes.h"
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 #ifndef M_PI
 #define M_PI 3.141592
@@ -106,6 +107,8 @@ func0(int x, int y, int z)
 }
 */
 
+static int prev_time = 0;
+
 static void
 idle_func()
 {
@@ -144,9 +147,15 @@ idle_func()
                    face_list, faces,
                    normal_list);
 
-    alpha += 5.0 / 5.0f;
-    beta += 4.0 / 5.0f;
-    
+    int time = glutGet(GLUT_ELAPSED_TIME);
+
+    float time_delta = (float) (time - prev_time) * 0.001;
+
+    alpha += 5.0f * 8.0f * time_delta;
+    beta += 4.0f * 8.0f * time_delta;
+
+    prev_time = time;
+
     glutPostRedisplay();
 }
 
@@ -296,8 +305,10 @@ resize(int w, int h)
 }
 
 int
-main()
+main(int argc, char **argv)
 {
+    glutInit(&argc, argv);
+
     /*
     printf("cube = ");
     scanf("%d", &cube_ind);
