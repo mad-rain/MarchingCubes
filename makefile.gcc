@@ -1,0 +1,15 @@
+CC = gcc
+OPT = -c -I/usr/X11R6/include -I.. -O3
+#OPT = -I.. -I../common -w4 -obsmrain -DDEBUG
+LN = gcc
+
+OBJS = mcubes.o mc_test.o vector.o
+
+mcubes.o	: mcubes.c
+		$(CC) mcubes.c $(OPT)
+mc_test.o	: mc_test.c
+		$(CC) mc_test.c $(OPT)
+vector.o	: vector.c
+		$(CC) vector.c $(OPT)
+mcubes		: $(OBJS)
+		gcc -o mc $(OBJS) -L/usr/X11R6/lib -lGL -lGLU -lglut -lc_r
